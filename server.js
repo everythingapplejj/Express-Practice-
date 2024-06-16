@@ -16,5 +16,6 @@ const userRouter = require('./routes/users')
 
 app.use('/users', userRouter) // it is like calling the mini applications
 
-app.listen(3001)
+
+app.listen(3001) // application 
 
