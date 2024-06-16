@@ -1,6 +1,7 @@
 const express = require("express")
 const router = express.Router()
 
+//router.get gets information from the server
 
 router.get('/', (req, res) => {
     res.send('User List')
@@ -9,5 +10,34 @@ router.get('/', (req, res) => {
 router.get('/new', (req, res) => {
     res.send("User New Form")
 })
+
+//router.post will send the information to the server
+
+router.post('/', (req, res) => {
+    res.send('Create User')
+}) // lets see the usage of this 
+
+router.route('/:id')
+  .get((req, res) => {
+    const userId = req.params.id;
+    console.log(req.user)
+    res.send(`Get User With ID ${userId}`);
+  })
+  .put((req, res) => {
+    const userId = req.params.id;
+    res.send(`Update User With ID ${userId}`);
+  })
+  .delete((req, res) => {
+    const userId = req.params.id;
+    res.send(`Delete User With ID ${userId}`);
+  });
+ // this is for everything
+
+  const users = [{name : "computer science"}, {name: "computer engineering"}]
+router.param("id", (req, res, next, id) => {
+    req.user = users[id] // request can be accessible anywhere in the file
+    next()
+})
+
 
 module.exports = router
