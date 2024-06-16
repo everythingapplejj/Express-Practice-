@@ -9,13 +9,14 @@ router.get('/', (req, res) => {
 })
 
 router.get('/new', (req, res) => {
-    res.send("User New Form")
+    res.render('users/new')
 })
 
 //router.post will send the information to the server
 
 router.post('/', (req, res) => {
-    res.send('Create User')
+    console.log(req.body.firstName)
+    res.send('hello user')
 }) // lets see the usage of this 
 
 router.route('/:id')
