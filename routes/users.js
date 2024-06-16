@@ -5,6 +5,7 @@ router.use(logger) // this is a middleware function
 //router.get gets information from the server
 
 router.get('/', (req, res) => {
+    console.log(req.query.name)
     res.send('User List')
 })
 
@@ -15,6 +16,14 @@ router.get('/new', (req, res) => {
 //router.post will send the information to the server
 
 router.post('/', (req, res) => {
+    const isValid = true
+    if(isValid) {
+        users.push({firstName: req.body.firstName})
+        res.redirect(`/users/${users.length - 1}`)
+    } else {
+        console.log('Error')
+        res.render('users/new', {firstName: req.body.firstName})
+    }
     console.log(req.body.firstName)
     res.send('hello user')
 }) // lets see the usage of this 

@@ -4,7 +4,7 @@ const app = express();
 // Serve static files from the "public" directory
 app.use(express.static("public"));
 app.use(express.urlencoded({extended: true})) // this allows to access the body via middleware
-
+app.use(express.json()) // this allows to parse json file 
 // Set EJS as the view engine
 app.set('view engine', 'ejs');
 
