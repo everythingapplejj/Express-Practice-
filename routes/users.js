@@ -1,6 +1,7 @@
 const express = require("express")
 const router = express.Router()
 
+router.use(logger) // this is a middleware function
 //router.get gets information from the server
 
 router.get('/', (req, res) => {
@@ -39,5 +40,10 @@ router.param("id", (req, res, next, id) => {
     next()
 })
 
+
+function logger(req, res, next) {
+    console.log(`${req.originalUrl} - ${new Date().toISOString()}`)
+    next()
+} // this is a middleware function 
 
 module.exports = router
